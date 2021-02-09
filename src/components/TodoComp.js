@@ -6,8 +6,6 @@ import './TodoComp.css'
 const TodoComp = ( { todo,deleteTodo,editModeToggle,checkChg,changeThisTodo } ) => {
 
     let todoIs = null;
-
-
     if(!todo.editMode)
     {
         if(todo.strikeThrough)

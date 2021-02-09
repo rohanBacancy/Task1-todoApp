@@ -9,16 +9,17 @@ const FormComp = ({ todos,setTodo }) => {
     {
         setVal(e.target.value);
     }
-
     const handleSubmit = (e) =>
     {
         e.preventDefault();
         let theID = val+Math.random()*1000;
+        if(val.length > 0)
+        {
         setTodo([ ...todos,{id:theID,data:val,editMode:false,strikeThrough:false} ]);
+        }
+        else{alert("Enter Some Text In Todo")}
         setVal("");
     }
-
-
 
     return (
         <div className="frm">

@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import './App.css';
-import FormComp from './FormComp';
-import TodoComp from './TodoComp';
+import FormComp from './components/FormComp';
+import TodoComp from './components/TodoComp';
 import { Divider, Typography } from '@material-ui/core';
 
 function App() {
 
-  const [todos,setTodo] = useState([
-    
-  ]);
+  const [todos,setTodo] = useState([]);
 
   const deleteTodo = (id) =>
   {
@@ -16,10 +14,8 @@ function App() {
   }
 
   const editModeToggle = (id) =>
-  {
-    
+  {    
     setTodo(todos.map( (todo) => todo.id === id&&todo.strikeThrough===false ? {...todo,editMode:!todo.editMode} : todo));
-    
   }
 
   const checkChg = (id) =>
@@ -39,7 +35,7 @@ function App() {
       }
     })
     setTodo(newTodo);
-    //setTodo(todos.filter((todo) => todo.id === id ? {...todo,data:newVal} : todo) )
+    
   }
 
   return (
@@ -47,15 +43,13 @@ function App() {
       <Typography variant={'h2'} style={{marginTop:'30px'}} className="title">Notes</Typography>
       <FormComp todos={todos} setTodo={setTodo} />   
 
-      {todos &&
-        todos.map( (todo) => {
+      { todos && todos.map( (todo) => {
                   return(
                     <>
                       <TodoComp key={todo.id} todos={todos} setTodo={setTodo} todo={todo} deleteTodo={deleteTodo} editModeToggle={editModeToggle} checkChg={checkChg} changeThisTodo={changeThisTodo}/>
                       <Divider style={{margin:'auto',width:'370px',background: 'linear-gradient(to bottom, #005aa7, #fffde4)'}}/>
                     </>
-                        )
-        }) 
+                        )}) 
       }
 
     </div>
